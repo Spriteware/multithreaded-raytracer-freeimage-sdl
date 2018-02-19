@@ -1,0 +1,8 @@
+Raytracing_project/Debug
+Raytracing_project/Release
+*.opensdf
+*.sdf
+*.suo
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
