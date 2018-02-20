@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{7C5B0E1A-F0D0-4207-925D-B9E1FE6331E0}</ProjectGuid>
+    <ProjectGuid>{6C87C7B4-CECA-4A23-8C40-6AE4AAD37536}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Raytracingproject</RootNamespace>
     <ProjectName>Raytracing_project</ProjectName>
