@@ -37,35 +37,22 @@ bool Scene::render()
 	std::cout << "rendering..." << std::endl;
 
 	unsigned int i, j, k, n;
-	int hfov = 90;
-	int vfov = 90;
-	double focale = m_camera.getFocale();
-
-	// todo handle too big fov or focale
-	double hmid_ecran = std::tan(hfov / 2.0 * PI / 180.0) * m_camera.getFocale();
-	double vmid_ecran = std::tan(vfov / 2.0 * PI / 180.0) * m_camera.getFocale();
-	double hecran = hmid_ecran * 2.0;
-	double vecran = vmid_ecran * 2.0;
-	double hpas = hecran / (double)IMG_WIDTH;
-	double vpas = vecran / (double)IMG_HEIGHT;
-
-	double x, y;
-	Vec4N ray(1, 0, 0);
-	//Vec4 ray_base = m_camera.getPos() + m_camera.getDirection() * m_camera.getFocale();
-	Vec4 ray_base = m_camera.getDirection() * m_camera.getFocale();
-
-	ray_base.print("ray_base");
+	double x, y, lowest_distance;
 
 	double img_width = IMG_WIDTH;
 	double img_height = IMG_HEIGHT;
 	double img_half_width = IMG_WIDTH / 2.0;
 	double img_half_height = IMG_HEIGHT / 2.0;
 
-	// The following approach is based on inspired by
-	// http://kylehalladay.com/blog/tutorial/math/2013/12/24/Ray-Sphere-Intersection.html
-
+	Vec4N ray;
 	Light light = m_lights[0];
 	int n_objects = m_objects.size();
+	
+	// Pre-compute the projection
+	m_camera.computeProjection(img_width, img_height);
+
+	// The following approach is based on inspired by
+	// http://kylehalladay.com/blog/tutorial/math/2013/12/24/Ray-Sphere-Intersection.html
 
 	for (i = 0; i < img_width; ++i)
 	{
@@ -76,12 +63,8 @@ bool Scene::render()
 			m_pixels[i][j].rgbGreen = 255 * AMBIENT_LIGHT_FACTOR;
 			m_pixels[i][j].rgbBlue = 255 * AMBIENT_LIGHT_FACTOR;
 
-			// TODO rotate in the camera's coords! /!\  
-			x = (i - img_half_width) * hpas;
-			y = (j - img_half_height) * vpas;
-			ray = (ray_base + Vec4(x, y, 0)).getNormalized();
-			
-			double lowest_distance = std::numeric_limits<double>::max();  // used for the z-index
+			ray = m_camera.getRayForPixel(i, j);
+			lowest_distance = std::numeric_limits<double>::max();  // used for the z-index
 
 			// Fetch for each object
 			for (k = 0; k < n_objects; ++k)
@@ -120,6 +103,7 @@ bool Scene::render()
 						if (n == k) // skip current object
 							continue;
 
+						// TODO check that the light is not between the object and the detect one
 						if (m_objects[n]->intersect(pt, light_ray, &p1, &p2))
 							lightened = false;
 					}
@@ -154,6 +138,9 @@ bool Scene::render()
 					m_pixels[i][j].rgbBlue = b > 255 ? 255 : b;
 				}
 			}
+
+			if (i == 0 && j == 0)
+				std::cout << "one pass: all good. " << std::endl;
 		}
 	}
 

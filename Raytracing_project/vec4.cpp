@@ -168,26 +168,31 @@ Vec4N Vec4::getNormalized()
 Vec4N::Vec4N() : 
 Vec4()
 {
-	check();
 }
 
 Vec4N::Vec4N(double p_x, double p_y, double p_z) :
 Vec4(p_x, p_y, p_z)
 {
+#ifdef _DEBUG
 	check();
+#endif
 }
 
 Vec4N::Vec4N(const Vec4& p_cpy) :
 Vec4(p_cpy)
 {
+#ifdef _DEBUG
 	check();
+#endif
 }
 
 
 Vec4N::Vec4N(const Vec4N& p_cpy) :
 Vec4(p_cpy)
 {
+#ifdef _DEBUG
 	check();
+#endif
 }
 
 Vec4N::~Vec4N()
