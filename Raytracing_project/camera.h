@@ -31,6 +31,6 @@ public:
 	Vec4N getRayForPixel(int p_x, int p_y);
 	Vec4 getPos();
 	Vec4N getDirection();
-	float getFocale();
+	double getFocale();
 	void setFieldOfView(int p_horizontal, int p_vertical);
 };

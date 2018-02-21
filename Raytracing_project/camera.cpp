@@ -62,7 +62,7 @@ Vec4N Camera::getDirection()
 	return m_direction;
 }
 
-float Camera::getFocale()
+double Camera::getFocale()
 {
 	return m_focale;
 }

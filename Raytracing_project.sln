@@ -15,6 +15,7 @@ Global
 		{6C87C7B4-CECA-4A23-8C40-6AE4AAD37536}.Debug|Win32.Build.0 = Debug|Win32
 		{6C87C7B4-CECA-4A23-8C40-6AE4AAD37536}.Release|Win32.ActiveCfg = Release|Win32
 		{6C87C7B4-CECA-4A23-8C40-6AE4AAD37536}.Release|Win32.Build.0 = Release|Win32
+		{6C87C7B4-CECA-4A23-8C40-6AE4AAD37536}.Release|Win32.Deploy.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
