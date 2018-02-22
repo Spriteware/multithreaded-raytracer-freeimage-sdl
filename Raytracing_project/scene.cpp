@@ -33,7 +33,7 @@ void Scene::addObject(Object* p_object, Colors p_color)
 	p_object->setColor(p_color);
 }
 
-bool Scene::render(Animated& p_anim, bool p_animate)
+bool Scene::render(Animated& p_anim)
 {
 	std::cout << "rendering..." << std::endl;
 
@@ -48,10 +48,6 @@ bool Scene::render(Animated& p_anim, bool p_animate)
 	Light light = m_lights[0];
 	unsigned int n_objects = m_objects.size();
 	unsigned int one_pass = 0;
-
-	// Update animation if necessary
-	if (p_animate)
-		p_anim.update();
 
 	// The following approach is based on inspired by
 	// http://kylehalladay.com/blog/tutorial/math/2013/12/24/Ray-Sphere-Intersection.html

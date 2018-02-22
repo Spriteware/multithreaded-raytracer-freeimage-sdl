@@ -30,7 +30,7 @@ public:
 	void addLight(const Light& p_light);
 	void addObject(Object* p_object, Colors p_color);
 
-	bool render(Animated& p_anim, bool p_animate);
+	bool render(Animated& p_anim);
 	bool save();
 
 	FIBITMAP* getFitbitMap();

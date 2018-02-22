@@ -1,7 +1,7 @@
 #include "sdl.h"
 
 /*
-	DISCLAIMER: All rights to Tjelvar Olsson:
+	DISCLAIMER: All rights to Tjelvar Olsson: (I just modified it a bit for my own purpose)
 	http://tjelvarolsson.com/blog/how-to-build-a-basic-image-viewer-using-freeimage-and-sdl2/
 */
 
@@ -49,6 +49,16 @@ SDL_Surface *get_sdl_surface(FIBITMAP *freeimage_bitmap, int is_grayscale) {
 	return sdl_surface;
 }
 
+SDL_Texture* get_sdl_texture(SDL_Surface *surface, SDL_Renderer* renderer)
+{
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+	if (texture == NULL) {
+		fprintf(stderr, "Failed to load image as texture\n");
+		exit(1);
+	}
+
+	return texture;
+}
 
 
 /** Initialise a SDL window and return a pointer to it. */
@@ -69,37 +79,38 @@ SDL_Window *get_sdl_window(int width, int height) {
 	return sdl_window;
 }
 
-/** Display the image by rendering the surface as a texture in the window. */
-void render_image(SDL_Window *window, SDL_Surface *surface) {
-	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
+SDL_Renderer* create_renderer(SDL_Window *window)
+{
+	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	if (renderer == NULL) {
 		fprintf(stderr, "Failed to create renderer: %s\n", SDL_GetError());
 		exit(1);
 	}
 
-	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
-	if (texture == NULL) {
-		fprintf(stderr, "Failed to load image as texture\n");
-		exit(1);
-	}
+	SDL_RenderClear(renderer);
+	return renderer;
+}
+
+/** Display the image by rendering the surface as a texture in the window. */
+void render_image(SDL_Texture *texture, SDL_Renderer *renderer)
+{
 
 	SDL_RenderClear(renderer);
 	SDL_RenderCopy(renderer, texture, NULL, NULL);
 	SDL_RenderPresent(renderer);
 }
 
-
 /** Loop until a key is pressed. */
-void event_loop() {
-	int done = 0;
+bool event_loop()
+{
 	SDL_Event e;
-	while (!done) {
-		while (SDL_PollEvent(&e)) {
-			if (e.type == SDL_QUIT || e.type == SDL_KEYDOWN) {
-				done = 1;
-			}
+	while (SDL_PollEvent(&e)) {
+		if (e.type == SDL_QUIT || e.type == SDL_KEYDOWN) {
+			return true;
 		}
 	}
+
+	return false;
 }
 
 

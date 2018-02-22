@@ -6,7 +6,7 @@ Animated::Animated()
 	m_gravity = Vec4(0, GRAVITY, 0);
 }
 
-Animated::Animated(Object * p_obj)
+Animated::Animated(Object * p_obj) : Animated()
 {
 	m_obj = p_obj;
 }
@@ -31,6 +31,9 @@ void Animated::update()
 	else if (y <= 0) {
 		m_velocity *= -0.8; // bounce and lose speed
 		next_pos = Vec4(next_pos.getX(), epsilon, next_pos.getY());
+	}
+	else {
+		m_velocity -= m_gravity;
 	}
 
 	m_obj->setPos(next_pos);
