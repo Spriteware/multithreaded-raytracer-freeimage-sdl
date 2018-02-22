@@ -21,10 +21,11 @@ public:
 	~Object();
 	
 	virtual bool intersect(const Vec4& p_origin, const Vec4N& p_direction, Vec4* p_p1, Vec4* p_p2) = 0;
-	RGBQUAD rgb(char r, char g, char b) const;
+	RGBQUAD rgb(const char r, const char g, const char b) const;
 
 	virtual Vec4N getNormalAt(const Vec4& p_pt) = 0;
-	Vec4 getPos();
+	Vec4 getPos() const;
+	void setPos(const Vec4& p_pos);
 	RGBQUAD getColor();
 	void setColor(Colors p_color);
 	void setColor(const RGBQUAD& p_color);

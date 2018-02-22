@@ -32,7 +32,7 @@ Object::~Object()
 {
 }
 
-RGBQUAD Object::rgb(char r, char g, char b) const
+RGBQUAD Object::rgb(const char r, const char g, const char b) const
 {
 	RGBQUAD color;
 	color.rgbRed = r;
@@ -42,9 +42,14 @@ RGBQUAD Object::rgb(char r, char g, char b) const
 	return color;
 }
 
-Vec4 Object::getPos()
+Vec4 Object::getPos() const 
 {
 	return m_pos;
+}
+
+void Object::setPos(const Vec4& p_pos)
+{
+	m_pos = p_pos;
 }
 
 RGBQUAD Object::getColor()

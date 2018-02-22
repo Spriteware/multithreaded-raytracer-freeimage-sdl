@@ -4,13 +4,14 @@
 #include <vector>
 #include <limits>
 
+#include "animated.h"
 #include "camera.h"
 #include "object.h"
 #include "light.h"
 
 // todo: to compute that with the camera
-#define IMG_WIDTH 1000
-#define IMG_HEIGHT 1000
+#define IMG_WIDTH 1100
+#define IMG_HEIGHT 800
 
 class Scene
 {
@@ -19,6 +20,7 @@ protected:
 	std::vector<Light> m_lights;
 	std::vector<Object*> m_objects;
 	RGBQUAD m_pixels[IMG_WIDTH][IMG_HEIGHT];
+	float m_test;
 
 public:
 	Scene();
@@ -28,6 +30,8 @@ public:
 	void addLight(const Light& p_light);
 	void addObject(Object* p_object, Colors p_color);
 
-	bool render();
+	bool render(Animated& p_anim, bool p_animate);
 	bool save();
+
+	FIBITMAP* getFitbitMap();
 };

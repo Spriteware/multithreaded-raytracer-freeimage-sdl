@@ -54,6 +54,12 @@
     <ClInclude Include="exception.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
+    <ClInclude Include="sdl.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animated.h">
+      <Filter>Resource Files\objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -85,6 +91,12 @@
     </ClCompile>
     <ClCompile Include="exception.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sdl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animated.cpp">
+      <Filter>Source Files\objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

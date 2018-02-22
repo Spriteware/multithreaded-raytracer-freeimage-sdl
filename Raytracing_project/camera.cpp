@@ -10,7 +10,7 @@ Camera::Camera(const Vec4& p_pos, const Vec4N& p_direction, float p_focale)
 	m_pos = p_pos;
 	m_direction = p_direction;
 	m_focale = p_focale;
-	m_hfov = 90;
+	m_hfov = 107;
 	m_vfov = 90;
 
 	m_direction.normalize();

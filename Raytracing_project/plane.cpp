@@ -21,11 +21,11 @@ Vec4 Plane::getNormal()
 
 bool Plane::intersect(const Vec4& p_origin, const Vec4N& p_direction, Vec4* p_p1, Vec4* p_p2)
 {
-	float denom = m_normal.dot(p_direction);
+	double denom = m_normal.dot(p_direction);
 	if (denom > -EPSILON && denom < EPSILON)
 		return false;
 
-	float t = (m_pos - p_origin).dot(m_normal) / denom;
+	double t = (m_pos - p_origin).dot(m_normal) / denom;
 	if (t < 0)
 		return false;
 

@@ -1,9 +1,11 @@
 #include "scene.h"
 #include "sphere.h"
 #include "plane.h"
+#include <thread>
 
 Scene::Scene()
 {
+	m_test=  -1;
 }
 
 Scene::~Scene()
@@ -15,7 +17,9 @@ Scene::~Scene()
 
 void Scene::setCamera(const Camera& p_camera)
 {
+	// Pre-compute the projection
 	m_camera = p_camera;
+	m_camera.computeProjection(IMG_WIDTH, IMG_HEIGHT);
 }
 
 void Scene::addLight(const Light& p_light)
@@ -29,25 +33,25 @@ void Scene::addObject(Object* p_object, Colors p_color)
 	p_object->setColor(p_color);
 }
 
-bool Scene::render()
+bool Scene::render(Animated& p_anim, bool p_animate)
 {
 	std::cout << "rendering..." << std::endl;
 
 	unsigned int i, j, k;
-	double lowest_distance;
-
 	unsigned int img_width = IMG_WIDTH;
 	unsigned int img_height = IMG_HEIGHT;
 	double img_half_width = IMG_WIDTH / 2.0;
 	double img_half_height = IMG_HEIGHT / 2.0;
+	double lowest_distance, numeric_max = std::numeric_limits<double>::max();
 
 	Vec4N ray;
 	Light light = m_lights[0];
 	unsigned int n_objects = m_objects.size();
 	unsigned int one_pass = 0;
-	
-	// Pre-compute the projection
-	m_camera.computeProjection(img_width, img_height);
+
+	// Update animation if necessary
+	if (p_animate)
+		p_anim.update();
 
 	// The following approach is based on inspired by
 	// http://kylehalladay.com/blog/tutorial/math/2013/12/24/Ray-Sphere-Intersection.html
@@ -62,7 +66,7 @@ bool Scene::render()
 			m_pixels[i][j].rgbBlue = BYTE(255 * AMBIENT_LIGHT_FACTOR);
 
 			ray = m_camera.getRayForPixel(i, j);
-			lowest_distance = std::numeric_limits<double>::max();  // used for the z-index
+			lowest_distance = numeric_max;  // used for the z-index
 
 			// Fetch for each object
 			for (k = 0; k < n_objects; ++k)
@@ -90,7 +94,9 @@ bool Scene::render()
 					m_pixels[i][j].rgbGreen = BYTE(g > 255 ? 255 : g);
 					m_pixels[i][j].rgbBlue = BYTE(b > 255 ? 255 : b);
 
-					one_pass = 1; // debug. cf next info
+#ifdef _DEBUG
+					one_pass = one_pass < 1 ? 1 : one_pass; // debug. cf next info
+#endif
 				}
 			}
 
@@ -111,6 +117,15 @@ bool Scene::save()
 {
 	std::cout << "saving..." << std::endl;
 
+	FIBITMAP* img = getFitbitMap();
+	FreeImage_Save(FIF_PNG, img, "../saved.png");
+	FreeImage_Unload(img);
+	return true;
+}
+
+
+FIBITMAP* Scene::getFitbitMap()
+{
 	FIBITMAP* img = FreeImage_Allocate(IMG_WIDTH, IMG_HEIGHT, 24);
 
 	// Go over all the pixels 
@@ -118,7 +133,5 @@ bool Scene::save()
 		for (int j = 0; j < IMG_HEIGHT; j++)
 			FreeImage_SetPixelColor(img, i, j, &(m_pixels[i][j]));
 
-	FreeImage_Save(FIF_PNG, img, "../saved.png");
-
-	return true;
+	return img;
 }
