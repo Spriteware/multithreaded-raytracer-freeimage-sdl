@@ -103,6 +103,7 @@
     <ClInclude Include="scene.h" />
     <ClInclude Include="sdl.h" />
     <ClInclude Include="sphere.h" />
+    <ClInclude Include="triangle.h" />
     <ClInclude Include="vec4.h" />
   </ItemGroup>
   <ItemGroup>
@@ -117,6 +118,7 @@
     <ClCompile Include="scene.cpp" />
     <ClCompile Include="sdl.cpp" />
     <ClCompile Include="sphere.cpp" />
+    <ClCompile Include="triangle.cpp" />
     <ClCompile Include="vec4.cpp" />
   </ItemGroup>
   <ItemGroup>

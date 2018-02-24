@@ -1,5 +1,6 @@
 #pragma once
 #include "object.h"
+#include "animated.h"
 
 class Sphere : public Object
 {
@@ -14,5 +15,6 @@ public:
 
 	float getRadius();
 	bool intersect(const Vec4& p_origin, const Vec4N& p_direction, Vec4* p_p1, Vec4* p_p2) override;
+	bool update(Vec4* p_velocity) override;
 	Vec4N getNormalAt(const Vec4& p_pt) override;
 };

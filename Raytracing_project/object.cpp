@@ -2,24 +2,28 @@
 
 Object::Object()
 {
+	m_isAnimated = false;
 }
 
 Object::Object(const Vec4& p_pos)
 {
 	m_pos = p_pos;
 	m_color = rgb(255, 255, 255);
+	m_isAnimated = false;
 }
 
 Object::Object(const Vec4& p_pos, const RGBQUAD& p_color)
 {
 	m_pos = p_pos;
 	m_color = p_color;
+	m_isAnimated = false;
 }
 
 Object::Object(const Vec4& p_pos, Colors p_color)
 {
 	m_pos = p_pos;
 	setColor(p_color);
+	m_isAnimated = false;
 }
 
 Object::Object(const Object& p_cpy)
@@ -67,6 +71,8 @@ void Object::setColor(Colors p_color)
 		color = rgb(46, 204, 113);
 	else if (p_color == Colors::BLUE)
 		color = rgb(52, 152, 219);
+	else if (p_color == Colors::YELLOW)
+		color = rgb(241, 196, 15);
 	else
 		color = rgb(255, 255, 255);
 
@@ -78,3 +84,12 @@ void Object::setColor(const RGBQUAD& p_color)
 	m_color = p_color;
 }
 
+void Object::setAnimated(bool p_value)
+{
+	m_isAnimated = p_value;
+}
+
+bool Object::isAnimated() const
+{
+	return m_isAnimated;
+}

@@ -63,6 +63,36 @@ bool Sphere::intersect(const Vec4& p_origin, const Vec4N& p_direction, Vec4* p_p
 
 	return true;
 }
+
+bool Sphere::update(Vec4* p_velocity)
+{
+	// Simple "gravity function". 
+	Vec4 next_pos = m_pos + *p_velocity;
+	Vec4 gravity = Vec4(0, GRAVITY, 0);
+
+	double y = m_pos.getY();
+	double epsilon = 0.001f;
+	double y_limit = m_radius;
+	double vx = p_velocity->getX();
+	double vy = p_velocity->getY();
+	double vz = p_velocity->getZ();
+
+	if (y <= y_limit && p_velocity->getNorm() < epsilon) {
+		*p_velocity *= FRICTION; // Attenuate speed
+		next_pos = Vec4(next_pos.getX(), y_limit + epsilon, next_pos.getZ());
+	}
+	else if (y <= y_limit) {
+		*p_velocity = Vec4(vx * FRICTION, vy * -BOUNCE, vz * BOUNCE); // bounce and lose speed
+		next_pos = Vec4(next_pos.getX(), y_limit + epsilon, next_pos.getZ());
+	}
+	else {
+		*p_velocity -= gravity;
+	}
+
+	m_pos = next_pos;
+	return true;
+}
+
 Vec4N Sphere::getNormalAt(const Vec4& p_pt)
 {
 	return (p_pt - m_pos).getNormalized();

@@ -1,42 +1,36 @@
 #include "animated.h"
+#include "sphere.h"
 
 Animated::Animated()
 {
+	m_iterations = 0;
+	m_state = 0;
 	m_velocity = Vec4(0, 0, 0);
-	m_gravity = Vec4(0, GRAVITY, 0);
 }
 
-Animated::Animated(Object * p_obj) : Animated()
+Animated::Animated(int p_iterations, Object * p_obj, const Vec4& p_velocity) : Animated()
 {
+	m_iterations = p_iterations;
+	m_velocity = p_velocity;
 	m_obj = p_obj;
+	m_obj->setAnimated(true);
 }
 
 Animated::~Animated()
 {
 }
 
+Object* Animated::render()
+{
+	m_state = m_iterations;
+	while (m_state--)
+		update();
+	return m_obj;
+}
+
 void Animated::update()
 {
-	// Simple "gravity function"
-
-	Vec4 pos = m_obj->getPos();
-	Vec4 next_pos = pos + m_velocity;
-	double y = pos.getY();
-	double epsilon = 0.001f;
-
-	if (y <= 0 && m_velocity.getNorm() < epsilon) {
-		m_velocity *= 0.7f; // Attenuate speed
-		next_pos = Vec4(next_pos.getX(), epsilon, next_pos.getY());
-	}
-	else if (y <= 0) {
-		m_velocity *= -0.8; // bounce and lose speed
-		next_pos = Vec4(next_pos.getX(), epsilon, next_pos.getY());
-	}
-	else {
-		m_velocity -= m_gravity;
-	}
-
-	m_obj->setPos(next_pos);
+	m_obj->update(&m_velocity);
 }
 
 Vec4 Animated::getVelocity() const 
@@ -47,4 +41,9 @@ Vec4 Animated::getVelocity() const
 void Animated::setVelocity(const Vec4& p_velocity)
 {
 	m_velocity = p_velocity;
+}
+
+Object* Animated::getObject() const
+{
+	return m_obj;
 }

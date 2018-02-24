@@ -33,6 +33,11 @@ bool Plane::intersect(const Vec4& p_origin, const Vec4N& p_direction, Vec4* p_p1
 	return true;
 }
 
+bool Plane::update(Vec4* p_velocity)
+{
+	return false;
+}
+
 Vec4N Plane::getNormalAt(const Vec4& p_pt)
 {
 	return m_normal;

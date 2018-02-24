@@ -47,6 +47,18 @@ void Vec4::operator-=(const Vec4& p_b)
 	m_w = norm();
 }
 
+void Vec4::operator*=(const Vec4& p_b) // dot product
+{
+	double x = m_y * p_b.m_z - m_z * p_b.m_y;
+	double y = m_z * p_b.m_x - m_x * p_b.m_z;
+	double z = m_x * p_b.m_y - m_y * p_b.m_x;
+
+	m_x = x;
+	m_y = y;
+	m_z = z;
+	m_w = norm();
+}
+
 void Vec4::operator*=(double p_b)
 {
 	m_x *= p_b;
@@ -84,6 +96,13 @@ Vec4 operator-(const Vec4& p_a, const Vec4& p_b)
 {
 	Vec4 cpy = Vec4(p_a);
 	cpy -= p_b;
+	return cpy;
+}
+
+Vec4 operator*(const Vec4& p_a, const Vec4& p_b) // cross product
+{
+	Vec4 cpy = Vec4(p_a);
+	cpy *= p_b;
 	return cpy;
 }
 

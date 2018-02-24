@@ -26,6 +26,7 @@ public:
 	bool isEqual(const Vec4& p_b) const;
 	void operator+=(const Vec4& p_b);
 	void operator-=(const Vec4& p_b);
+	void operator*=(const Vec4& p_b);
 	void operator*=(double p_b);
 	void operator/=(double p_b);
 
@@ -59,6 +60,7 @@ bool operator==(const Vec4& p_a, const Vec4& p_b);
 bool operator!=(const Vec4& p_a, const Vec4& p_b);
 Vec4 operator+(const Vec4& p_a, const Vec4& p_b);
 Vec4 operator-(const Vec4& p_a, const Vec4& p_b);
+Vec4 operator*(const Vec4& p_a, const Vec4& p_b);
 Vec4 operator*(const Vec4& p_a, double p_b);
 Vec4 operator*(double p_a, const Vec4& p_b);
 Vec4 operator/(const Vec4& p_a, double p_b);
