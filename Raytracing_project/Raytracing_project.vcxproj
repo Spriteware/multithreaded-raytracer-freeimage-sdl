@@ -95,10 +95,11 @@
     <ClInclude Include="cube.h" />
     <ClInclude Include="exception.h" />
     <ClInclude Include="light.h" />
-    <ClInclude Include="material.h" />
     <ClInclude Include="animated.h" />
+    <ClInclude Include="mat4.h" />
     <ClInclude Include="object.h" />
     <ClInclude Include="plane.h" />
+    <ClInclude Include="pyramid.h" />
     <ClInclude Include="ray.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="sdl.h" />
@@ -112,17 +113,16 @@
     <ClCompile Include="exception.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mat4.cpp" />
     <ClCompile Include="object.cpp" />
     <ClCompile Include="cube.cpp" />
     <ClCompile Include="plane.cpp" />
+    <ClCompile Include="pyramid.cpp" />
     <ClCompile Include="scene.cpp" />
     <ClCompile Include="sdl.cpp" />
     <ClCompile Include="sphere.cpp" />
     <ClCompile Include="triangle.cpp" />
     <ClCompile Include="vec4.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\saved.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

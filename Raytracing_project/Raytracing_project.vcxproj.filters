@@ -16,59 +16,65 @@
     <Filter Include="Source Files\objects">
       <UniqueIdentifier>{e26eff82-1da2-4068-9a5e-94aea3ea2120}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\objects">
+    <Filter Include="Source Files\utils">
+      <UniqueIdentifier>{f557ff0a-c6ff-4692-b52c-d5979b4aa6ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\objects">
       <UniqueIdentifier>{4ced7a48-beb0-4a36-85ab-51742f6756a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\utils">
+      <UniqueIdentifier>{1d67d9a9-bbc8-4021-bae8-a9f3ed489610}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="camera.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="light.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="material.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="vec4.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="object.h">
-      <Filter>Resource Files\objects</Filter>
-    </ClInclude>
-    <ClInclude Include="sphere.h">
-      <Filter>Resource Files\objects</Filter>
-    </ClInclude>
-    <ClInclude Include="cube.h">
-      <Filter>Resource Files\objects</Filter>
-    </ClInclude>
-    <ClInclude Include="scene.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
     <ClInclude Include="ray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="plane.h">
-      <Filter>Resource Files\objects</Filter>
-    </ClInclude>
-    <ClInclude Include="exception.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sdl.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="animated.h">
-      <Filter>Resource Files\objects</Filter>
+    <ClInclude Include="sphere.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="triangle.h">
-      <Filter>Resource Files\objects</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="light.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="object.h">
+      <Filter>Header Files\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="animated.h">
+      <Filter>Header Files\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="cube.h">
+      <Filter>Header Files\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="pyramid.h">
+      <Filter>Header Files\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="plane.h">
+      <Filter>Header Files\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="vec4.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="exception.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="mat4.h">
+      <Filter>Header Files\utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="vec4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="camera.cpp">
@@ -92,22 +98,26 @@
     <ClCompile Include="plane.cpp">
       <Filter>Source Files\objects</Filter>
     </ClCompile>
-    <ClCompile Include="exception.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sdl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="animated.cpp">
       <Filter>Source Files\objects</Filter>
     </ClCompile>
     <ClCompile Include="triangle.cpp">
       <Filter>Source Files\objects</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\saved.png">
-      <Filter>Resource Files</Filter>
-    </Image>
+    <ClCompile Include="pyramid.cpp">
+      <Filter>Source Files\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="vec4.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="sdl.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="exception.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="mat4.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

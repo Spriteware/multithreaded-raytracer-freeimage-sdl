@@ -36,11 +36,6 @@ void Scene::addObject(Object* p_object, Colors p_color)
 	p_object->setColor(p_color);
 }
 
-//void Scene::addAnimatedObject(Animated* p_anim)
-//{
-//	m_animated.push_back(p_anim)
-//}
-
 bool Scene::render(Animated& p_anim)
 {
 	unsigned int i, j, k;
@@ -56,6 +51,8 @@ bool Scene::render(Animated& p_anim)
 
 	Vec4N ray;
 	Light* light = m_lights[0]; // no various lights handling yet
+	light->update(p_anim.getIterations());
+
 	unsigned int n_objects = m_objects.size();
 	unsigned int one_pass = 0;
 

@@ -64,6 +64,12 @@ void Light::enlight(const Vec4& p_camRay, Object* p_obj, const Vec4& p_pt, const
 	*b = int(color.rgbBlue * lux + 255 * specular);
 }
 
+void Light::update(int p_iterations)
+{
+	float deg = p_iterations / 120.0 * 360.0; // 60 frames equals one complete rotation
+	m_pos.rotate(deg, Vec4N(0, 1, 0));
+}
+
 Vec4 Light::getPos()
 {
 	return m_pos;

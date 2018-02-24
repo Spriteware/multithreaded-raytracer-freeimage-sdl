@@ -22,16 +22,12 @@ bool Triangle::intersect(const Vec4& p_origin, const Vec4N& p_direction, Vec4* p
 	Vec4 p1p3 = m_p3 - m_p1;
 	Vec4 pvec = p_direction * p1p3;
 	double det = p1p2.dot(pvec);
-#ifdef CULLING
-	// if the determinant is negative the triangle is backfacing
-	// if the determinant is close to 0, the ray misses the triangle
-	if (det < EPSILON) return false;
-#else
+
 	// ray and triangle are parallel if det is close to 0
 	if (fabs(det) < EPSILON)
 		return false;
-#endif
-	float inv_det = 1 / det;
+	
+	float inv_det = 1.0 / det;
 
 	Vec4 tvec = p_origin - m_p1;
 	double u = tvec.dot(pvec) * inv_det;

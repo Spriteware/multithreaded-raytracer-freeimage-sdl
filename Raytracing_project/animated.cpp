@@ -47,3 +47,8 @@ Object* Animated::getObject() const
 {
 	return m_obj;
 }
+
+int Animated::getIterations() const
+{
+	return m_iterations;
+}

@@ -2,10 +2,13 @@
 #include <iostream>
 #include <string>
 #include "exception.h"
+//#include "mat4.h"
 
+#define PI 3.14159265359
 #define EPSILON 0.00001f
 
 class Vec4N;
+class Mat4;
 
 class Vec4
 {
@@ -20,6 +23,7 @@ protected:
 public:
 	Vec4();
 	Vec4(double p_x, double p_y, double p_z);
+	Vec4(double p_x, double p_y, double p_z, double p_w);
 	Vec4(const Vec4& p_cpy);
 	~Vec4();
 
@@ -31,6 +35,7 @@ public:
 	void operator/=(double p_b);
 
 	double dot(const Vec4& p_b) const;
+	void rotate(float p_deg, const Vec4N& p_axis);
 	void normalize();
 	void print(std::string p_name) const; // usefull for debug
 
@@ -40,6 +45,7 @@ public:
 	double getZ() const;
 	double getNorm() const;
 	Vec4N getNormalized();
+	Vec4 getRotated(float p_deg, const Vec4N& p_axis);
 };
 
 // Normalized vector:

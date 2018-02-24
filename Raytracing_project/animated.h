@@ -23,4 +23,5 @@ public:
 	Vec4 getVelocity() const;
 	void setVelocity(const Vec4& p_velocity);
 	Object* getObject() const;
+	int getIterations() const;
 };

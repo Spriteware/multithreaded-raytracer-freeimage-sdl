@@ -9,9 +9,11 @@
 #include "object.h"
 #include "light.h"
 
-// todo: to compute that with the camera
-#define IMG_WIDTH 550
-#define IMG_HEIGHT 400
+#define IMG_WIDTH 825
+#define IMG_HEIGHT 600
+
+//#define IMG_WIDTH 1100
+//#define IMG_HEIGHT 800
 
 class Scene
 {

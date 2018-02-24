@@ -1,4 +1,5 @@
 #include "vec4.h"
+#include "mat4.h"
 
 Vec4::Vec4()
 {
@@ -10,6 +11,14 @@ Vec4::Vec4(double p_x, double p_y, double p_z)
 	m_y = p_y;
 	m_z = p_z;
 	m_w = norm();
+}
+
+Vec4::Vec4(double p_x, double p_y, double p_z, double p_w)
+{	
+	m_x = p_x;
+	m_y = p_y;
+	m_z = p_z;
+	m_w = p_w;
 }
 
 Vec4::Vec4(const Vec4& p_cpy)
@@ -130,6 +139,40 @@ Vec4 operator/(double p_a, const Vec4& p_b)
 	return p_b / p_a;
 }
 
+void Vec4::rotate(float p_deg, const Vec4N& p_axis)
+{
+	float cos_deg = std::cos(p_deg * PI / 180.0);
+	float sin_deg = std::sin(p_deg * PI / 180.0);
+	Mat4 rot;
+
+	if (p_axis.getX() == 1.0)
+	{
+		rot = Mat4(
+			p_axis,
+			Vec4(0, cos_deg, -sin_deg),
+			Vec4(0, cos_deg, -sin_deg)
+		);
+	}
+	else if (p_axis.getY() == 1.0)
+	{
+		rot = Mat4(
+			Vec4(cos_deg, 0, sin_deg),
+			p_axis,
+			Vec4(-sin_deg, 0, cos_deg)
+		);
+	}
+	else if (p_axis.getZ() == 1.0)
+	{
+		rot = Mat4(
+			Vec4(cos_deg, -sin_deg, 0),
+			Vec4(sin_deg, cos_deg, 0),
+			p_axis
+		);
+	}
+
+	*this = rot * (*this);
+}
+
 double Vec4::dot(const Vec4& p_b) const
 {
 	return m_x * p_b.m_x + m_y * p_b.m_y + m_z * p_b.m_z;
@@ -179,6 +222,13 @@ Vec4N Vec4::getNormalized()
 {
 	Vec4 cpy = Vec4(*this);
 	cpy.normalize();
+	return Vec4N(cpy);
+}
+
+Vec4 Vec4::getRotated(float p_deg, const Vec4N& p_axis)
+{
+	Vec4 cpy = Vec4(*this);
+	cpy.rotate(p_deg, p_axis);
 	return Vec4N(cpy);
 }
 

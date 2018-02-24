@@ -18,5 +18,6 @@ public:
 	~Light();
 
 	void enlight(const Vec4& p_camRay, Object* p_obj, const Vec4& p_pt, const std::vector<Object*>& p_objects, int *r, int *g, int *b);
+	void update(int p_iterations);
 	Vec4 getPos();
 };
