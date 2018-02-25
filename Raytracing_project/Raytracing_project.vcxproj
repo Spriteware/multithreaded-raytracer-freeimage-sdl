@@ -92,7 +92,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
-    <ClInclude Include="cube.h" />
     <ClInclude Include="exception.h" />
     <ClInclude Include="light.h" />
     <ClInclude Include="animated.h" />
@@ -115,7 +114,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mat4.cpp" />
     <ClCompile Include="object.cpp" />
-    <ClCompile Include="cube.cpp" />
     <ClCompile Include="plane.cpp" />
     <ClCompile Include="pyramid.cpp" />
     <ClCompile Include="scene.cpp" />

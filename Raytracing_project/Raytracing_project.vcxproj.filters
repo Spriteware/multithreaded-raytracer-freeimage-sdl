@@ -30,12 +30,6 @@
     <ClInclude Include="ray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sphere.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="triangle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -49,9 +43,6 @@
       <Filter>Header Files\objects</Filter>
     </ClInclude>
     <ClInclude Include="animated.h">
-      <Filter>Header Files\objects</Filter>
-    </ClInclude>
-    <ClInclude Include="cube.h">
       <Filter>Header Files\objects</Filter>
     </ClInclude>
     <ClInclude Include="pyramid.h">
@@ -72,6 +63,12 @@
     <ClInclude Include="mat4.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
+    <ClInclude Include="sphere.h">
+      <Filter>Header Files\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="triangle.h">
+      <Filter>Header Files\objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -81,9 +78,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="object.cpp">
-      <Filter>Source Files\objects</Filter>
-    </ClCompile>
-    <ClCompile Include="cube.cpp">
       <Filter>Source Files\objects</Filter>
     </ClCompile>
     <ClCompile Include="sphere.cpp">

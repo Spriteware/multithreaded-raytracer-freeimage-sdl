@@ -11,7 +11,7 @@
 #include "plane.h"
 
 #define _VERBOSE
-//#define _SAVE_AS_FILE
+#define _SAVE_AS_FILE
 
 #define FRAMES 140
 // 2secs at 24fps
@@ -64,7 +64,8 @@ SDL_Texture* render(int p_id, int p_iteration)
 #endif
 
 #ifdef _SAVE_AS_FILE
-	scene->save("scene_" + std::to_string(p_id));
+	if (p_id == 0) // save only once...
+		scene->save("scene_" + std::to_string(p_id));
 #endif
 
 	// We return the created texture
