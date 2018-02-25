@@ -1,4 +1,6 @@
 # Digital Imaging - Raytracing Algorithm
+* Une version Française est disponible à **README-french.md** *
+
 The aim of this project was to implement a 3D rendering system by ray throwing with the following specificities:  
 
 - Make a beam throw with a Blinn-Phong material model;
